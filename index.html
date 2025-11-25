@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="card-container">
+    <div class="card" id="card">
+
+        <button id="flipBtn" class="flip-btn">⟳</button>
+
+        <div class="card-inner" id="cardInner">
+            <div class="card-front">
+                <p id="word" class="word">Loading...</p>
+            </div>
+            <div class="card-back">
+                <p id="translation" class="translation">...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button id="know" class="btn know">Знаю ✓</button>
+        <button id="dontknow" class="btn dontknow">Не знаю ✕</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
