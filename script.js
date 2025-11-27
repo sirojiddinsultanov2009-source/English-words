@@ -1,5 +1,5 @@
 let words = [
- ["matual", "ikki tomonlama"],
+ ["mutual", "ikki tomonlama"],
     ["trump", "kuzir"],
     ["naivety", "soddalik"],
     ["generate", "yaratmoq"],
@@ -74,3 +74,4 @@ btnDont.addEventListener("click", () => {
 
 
 showCard();
+
