@@ -1,33 +1,33 @@
 let words = [
-    ["clean", "toza"],
-    ["dirty", "kir"],
-    ["calm", "yuvosh"],
-    ["rude", "qo'pol"],
-    ["mean", "baxil"],
-    ["polite", "odobli"],
-    ["hot", "issiq"],
-    ["easygoing", "yengil tabiat"],
-    ["complicated", "murakkab"],
-    ["shallow", "sayoz"],
-    ["deep", "chuqur"],
-    ["greedy", "ochko'z"],
-    ["vain", "kekkaygan"],
-    ["selfish", "egoist"],
-    ["dynamic", "serharakat"],
-    ["outgoing", "kirishimli"],
-    ["edible", "yesa bo'ladigan"],
-    ["cautious", "ehtiyotkor"],
-    ["natural", "tabiy"],
-    ["strong", "kuchli"],
-    ["brave", "mard"],
-    ["pretty", "go'zal"],
-    ["salty", "sho'r"],
-    ["weak", "kuchsiz"],
-    ["strict", "talabchan"],
-    ["empty", "bo'm bo'sh"],
-    ["full", "to'q"],
-    ["fat", "semiz"],
-    ["ugly", "xunuk"]
+ ["matual", "ikki tomonlama"],
+    ["trump", "kuzir"],
+    ["naivety", "soddalik"],
+    ["generate", "yaratmoq"],
+    ["give birth", "tug'am"],
+    ["perform", "Ijro etmoq"],
+    ["realize", "anglamoq"],
+    ["release", "qo'yib yubormoq"],
+    ["inform", "ma'lumot bermoq"],
+    ["typical", "oddiy"],
+    ["borrow", "qarzga olmoq"],
+    ["contain", "o'z ichiga olmoq"],
+    ["dedicate", "beg'ishlamoq"],
+    ["lease", "ijaraga bermoq"],
+    ["suspicious", "shubhali"],
+    ["reckless", "beg'am"],
+    ["cabbage", "karam"],
+    ["lipstick", "lab bo'yog'i"],
+    ["pupil", "qorachiq"],
+    ["prohibit", "taqiqlamoq"],
+    ["colorful", "ranli"],
+    ["shame", "uyat"],
+    ["pray", "ibodat qilmoq"],
+    ["crucial", "muhim"],
+    ["unripe", "pishmagan"],
+    ["similar", "o'xshash"],
+    ["aggressive", "tajavuskor"],
+    ["seat-belt", "kamar"],
+    ["prom", "bitiruv kechasi"]
 ];
 
 const card = document.getElementById("card");
@@ -71,5 +71,6 @@ btnDont.addEventListener("click", () => {
     words.push(w);
     showCard();
 });
+
 
 showCard();
