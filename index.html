@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flashcards</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards by Nero</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="card-container">
-    <div class="card" id="card">
+    <header>
+        <h1>Flashcards</h1>
 
-        <button id="flipBtn" class="flip-btn">⟳</button>
+        <nav class="tabs">
+            <button data-set="day2">2-day</button>
+            <button data-set="day3">3-day</button>
+            <button data-set="day4">4-day</button>
+            <button data-set="day5">5-day</button>
+            <button data-set="day6">6-day</button>
+            <button data-set="verbs">Irregular verbs</button>
+        </nav>
+    </header>
 
-        <div class="card-inner" id="cardInner">
-            <div class="card-front">
-                <p id="word" class="word">Loading...</p>
-            </div>
-            <div class="card-back">
-                <p id="translation" class="translation">...</p>
-            </div>
-        </div>
-    </div>
+    <main>
+        <div id="card-container"></div>
+    </main>
 
-    <div class="buttons">
-        <button id="know" class="btn know">Знаю ✓</button>
-        <button id="dontknow" class="btn dontknow">Не знаю ✕</button>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
