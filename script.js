@@ -1,4 +1,3 @@
-// --- WORD SETS ---
 const sets = {
     day2: [
         ["consider", "mulohaza qilmoq"],
@@ -179,6 +178,72 @@ const sets = {
         ["prom", "bitiruv kechasi"],
     ],
 
+    day7: [
+        ["mosquito", "chivin"],
+        ["effort", "harakat"],
+        ["anthem", "madhiya"],
+        ["criminal", "jinoyatchi"],
+        ["jackal", "chiyabo'ri"],
+        ["sharp", "o‘tkir"],
+        ["sledge", "chana"],
+        ["farmer", "fermer"],
+        ["shark", "akula"],
+        ["liar", "yolg‘onchi"],
+        ["fork", "vilka"],
+        ["aggressive", "tajavuzkor"],
+        ["alive", "tirik"],
+        ["wealth", "boylik"],
+        ["blood", "qon"],
+        ["cinema", "kinoteatr"],
+        ["dead", "o‘lik"],
+        ["cute", "yoqimtoy"],
+        ["pineapple", "ananas"],
+        ["blind", "ko‘r"],
+        ["squirrel", "olmahon"],
+        ["shy", "uyatchan"],
+        ["damp", "ho'l"],
+        ["bully", "bezori"],
+        ["chef", "bosh oshpaz"],
+        ["butcher", "qassob"],
+        ["cheap", "arzon"],
+        ["devil", "iblis"],
+        ["curly", "jingalak"],
+        ["ferry", "qayiq"],
+    ],
+
+        day8: [
+        ["advertisement", "reklama"],
+        ["poem", "she’r"],
+        ["curtain", "parda"],
+        ["magenta", "qirmizi (rang)"],
+        ["forest", "o‘rmon"],
+        ["great", "ajoyib"],
+        ["fever", "isitma"],
+        ["striped", "yo'l-yo'l"],
+        ["air conditioner", "konditsioner"],
+        ["ring", "uzuk"],
+        ["cloudy", "bulutli"],
+        ["minor", "ahamiyatsiz"],
+        ["vital", "ahamiyatli"],
+        ["squeeze", "siqmoq"],
+        ["river", "daryo"],
+        ["button", "tugma"],
+        ["queen", "qirolicha"],
+        ["sing", "kuylash"],
+        ["clothes", "kiyim"],
+        ["culture", "madaniyat"],
+        ["busy", "band"],
+        ["generous", "saxiy"],
+        ["mean", "ochko'z"],
+        ["polite", "odobli"],
+        ["chase", "quvlamoq"],
+        ["picture", "rasm"],
+        ["letter", "xat"],
+        ["sun", "quyosh"],
+        ["shine", "charaqlamoq"],
+        ["dress", "ko‘ylak"],
+    ],
+
    verbs: [
         ["be", "was/were — been"],
         ["become", "became — become"],
@@ -324,4 +389,3 @@ function speak(text) {
 
 // Первичная загрузка
 renderCard();
-
