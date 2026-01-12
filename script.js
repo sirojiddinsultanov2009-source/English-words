@@ -1,5 +1,108 @@
+/* ================= helpers ================= */
+const open = el => el.classList.add("active");
+const close = el => el.classList.remove("active");
+
+/* ================= overlays ================= */
+const startBtn = document.getElementById("startBtn");
+
+const mainOverlay = document.getElementById("mainOverlay");
+const wordsOverlay = document.getElementById("wordsOverlay");
+const topicsOverlay = document.getElementById("topicsOverlay");
+const testsOverlay = document.getElementById("testsOverlay");
+const topicTestsOverlay = document.getElementById("topicTestsOverlay");
+const presentTestOverlay = document.getElementById("presentTestOverlay");
+
+/* ================= WORDS STATE (FIX #1) ================= */
+let currentSet = [];
+let currentIndex = 0;
+let isFlipped = false;
+let isSetSelected = false;
+
+/* ================= navigation ================= */
+startBtn.onclick = () => open(mainOverlay);
+
+document.getElementById("closeMain").onclick = () => close(mainOverlay);
+
+document.getElementById("wordsBtn").onclick = () => {
+  close(mainOverlay);
+  open(wordsOverlay);
+
+  // сброс состояния
+  isSetSelected = false;
+  currentSet = [];
+  currentIndex = 0;
+  isFlipped = false;
+
+  const container = document.getElementById("card-container");
+  if (container) {
+    container.innerHTML = `<p style="color:#555">Выберите день</p>`;
+  }
+
+  document.querySelector(".tabs .active")?.classList.remove("active");
+  document.querySelector(".tabs")?.classList.remove("hidden");
+};
+
+document.getElementById("topicsBtn").onclick = () => {
+  close(mainOverlay);
+  open(topicsOverlay);
+};
+
+document.getElementById("testsBtn").onclick = () => {
+  close(mainOverlay);
+  open(testsOverlay);
+};
+
+document.getElementById("backFromWords").onclick = () => {
+  close(wordsOverlay);
+  open(mainOverlay);
+  document.querySelector(".tabs")?.classList.remove("hidden");
+};
+
+document.getElementById("backFromTopics").onclick = () => {
+  close(topicsOverlay);
+  open(mainOverlay);
+};
+
+document.getElementById("backFromTests").onclick = () => {
+  close(testsOverlay);
+  open(mainOverlay);
+};
+
+document.getElementById("topicTestsBtn").onclick = () => {
+  close(testsOverlay);
+  open(topicTestsOverlay);
+};
+
+document.getElementById("backFromTopicTests").onclick = () => {
+  close(topicTestsOverlay);
+  open(testsOverlay);
+};
+
+document.getElementById("presentSimpleBtn").onclick = () => {
+  close(topicTestsOverlay);
+  open(presentTestOverlay);
+};
+
+/* ================= tests ================= */
+let score = 0;
+
+document.querySelectorAll("[data-correct]").forEach(btn => {
+  btn.onclick = () => {
+    if (btn.classList.contains("correct")) return;
+    btn.classList.add("correct");
+    score++;
+  };
+});
+
+document.getElementById("finishTest").onclick = () => {
+  alert(`Твой результат: ${score} / 2`);
+  score = 0;
+  close(presentTestOverlay);
+};
+
+/* ================= WORDS DATA ================= */
 const sets = {
-    day2: [
+  day2: [
         ["consider", "mulohaza qilmoq"],
         ["fly", "uchmoq"],
         ["believe", "ishonmoq"],
@@ -35,9 +138,8 @@ const sets = {
         ["wake up", "uyg‘onmoq"],
         ["stand", "o‘rnidan turmoq"],
         ["sleep", "uxlamoq"],
-    ],
-
-    day3: [
+  ],
+  day3: [
         ["elephant", "fil"],
         ["blacksmith", "temirchi"],
         ["user", "foydalanuvchi"],
@@ -74,8 +176,7 @@ const sets = {
         ["classmate", "sinfdosh"],
         ["necklace", "marjon"],
     ],
-
-    day4: [
+  day4: [
         ["welder", "payvandlovchi"],
         ["plumber", "santexnik"],
         ["builder", "quruvchi"],
@@ -113,7 +214,7 @@ const sets = {
         ["carpenter", "duradgor"],
     ],
 
-    day5: [
+  day5: [
         ["clean", "toza"],
         ["dirty", "kir"],
         ["calm", "yuvosh"],
@@ -144,8 +245,7 @@ const sets = {
         ["fat", "semiz"],
         ["ugly", "xunuk"],
     ],
-
-    day6: [
+  day6: [
         ["mutual", "ikki tomonlama"],
         ["trump", "kuzir"],
         ["naivety", "soddalik"],
@@ -178,7 +278,7 @@ const sets = {
         ["prom", "bitiruv kechasi"],
     ],
 
-    day7: [
+  day7: [
         ["mosquito", "chivin"],
         ["effort", "harakat"],
         ["anthem", "madhiya"],
@@ -211,7 +311,7 @@ const sets = {
         ["ferry", "qayiq"],
     ],
 
-        day8: [
+  day8: [
         ["advertisement", "reklama"],
         ["poem", "she’r"],
         ["curtain", "parda"],
@@ -244,7 +344,53 @@ const sets = {
         ["dress", "ko‘ylak"],
     ],
 
-   verbs: [
+  day9: [
+        ["endangered", "xavf ostida qolgan"],
+        ["extinct", "qirilib ketgan"],
+        ["get lost", "yo'qolib qolmoq"],
+        ["concession", "yon berish"],
+        ["wrap", "o'ramoq"],
+        ["awful", "juda yomon"],
+        ["despise", "nafratlanmoq"],
+        ["run out of", "tugab qolmoq"],
+        ["humilate", "ho'rlanmoq"],
+        ["backround", "kelib chiqish"],
+        ["litter", "chiqindi"],
+        ["permanent", "doimiy"],
+        ["satelitte", "dun'iy yo'ldosh"],
+        ["beneath", "ostida, tagida"],
+        ["barrier", "to'siq"],
+        ["amazing", "hayratlanarli"],
+        ["complaint", "norozilik"],
+        ["steel", "po'lat"],
+        ["sudden", "kutilmagan"],
+        ["decay", "chirish"],
+    ],
+
+    day10: [
+        ["doorman", "eshikni ochib yopuvchi"],
+        ["qualitative", "sifatli"],
+        ["last", "davom etmoq"],
+        ["carry", "tashimoq"],
+        ["rumor", "mish-mish"],
+        ["bully", "bezori"],
+        ["invincible", "yengilmas"],
+        ["push", "itarmoq"],
+        ["charity", "hayriya"],
+        ["negotiation", "muzokara"],
+        ["belongings", "biso't, ko'ch-ko'ron"],
+        ["copper", "mis"],
+        ["obvious", "yaqqol, ravshan"],
+        ["chase", "quvlamoq"],
+        ["insult", "haqorat qilmoq"],
+        ["dreadful", "dahshatli"],
+        ["disgusting", "jirkanch"],
+        ["widen", "kengaytirmoq"],
+        ["quicken", "tezlashtirmoq"],
+        ["circumstance", "vaziyat, holat"],
+    ],
+
+    verbs: [
         ["be", "was/were — been"],
         ["become", "became — become"],
         ["begin", "began — begun"],
@@ -296,96 +442,228 @@ const sets = {
         ["wear", "wore — worn"],
         ["write", "wrote — written"]
 ]
-}
 
-let currentSet = [...sets.day2];
-let currentIndex = 0;
+};
 
-
-// --- LOAD SET ---
+/* ================= WORDS LOGIC ================= */
 function loadSet(name) {
-    currentSet = [...sets[name]];
-    currentIndex = 0;
-    renderCard();
+  currentSet = [...sets[name]];
+  currentIndex = 0;
+  isFlipped = false;
+  isSetSelected = true;
+  renderCard();
 }
 
+function renderCard() {
+  const container = document.getElementById("card-container");
+  if (!container) return;
 
-// --- TABS SWITCH ---
-document.querySelectorAll(".tabs button").forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.querySelector(".tabs .active")?.classList.remove("active");
-        btn.classList.add("active");
-        loadSet(btn.dataset.set);
-    });
+  if (!isSetSelected) {
+    container.innerHTML = `<p style="color:#555">Выберите день</p>`;
+    return;
+  }
+
+  if (!currentSet.length) {
+    container.innerHTML = `<p>Нет слов</p>`;
+    return;
+  }
+
+  const [word, translate] = currentSet[currentIndex];
+
+  container.innerHTML = `
+    <div class="card ${isFlipped ? "flipped" : ""}">
+      <div class="front">
+        <button data-action="flip">↻</button>
+        <button data-action="sound">🔊</button>
+
+        <h2>${word}</h2>
+        <small>${currentIndex + 1} / ${currentSet.length}</small>
+
+        <button data-action="dont">Don't know</button>
+        <button data-action="next">Know</button>
+      </div>
+
+      <div class="back">
+        <button data-action="flip">↻</button>
+
+        <h2>${translate}</h2>
+
+        <button data-action="dont">Don't know</button>
+        <button data-action="next">Know</button>
+      </div>
+    </div>
+  `;
+}
+
+/* ================= EVENTS ================= */
+document.addEventListener("click", e => {
+  const { set, action } = e.target.dataset;
+
+  if (set) {
+    document.querySelector(".tabs .active")?.classList.remove("active");
+    e.target.classList.add("active");
+
+    loadSet(set);
+    document.querySelector(".tabs")?.classList.add("hidden");
+  }
+
+  if (!action) return;
+
+  if (action === "flip") {
+    isFlipped = !isFlipped;
+    renderCard();
+  }
+
+  if (action === "next") {
+    currentIndex++;
+    if (currentIndex >= currentSet.length) {
+      document.getElementById("card-container").innerHTML =
+        `<h3 style="color:#27c94d">🎉 Все слова выучены!</h3>`;
+      return;
+    }
+    isFlipped = false;
+    renderCard();
+  }
+
+  if (action === "dont") {
+    currentSet.push(currentSet[currentIndex]);
+    currentIndex++;
+    isFlipped = false;
+    renderCard();
+  }
+
+  if (action === "sound") {
+    speak(currentSet[currentIndex][0]);
+  }
 });
 
-
-// --- RENDER CARD ---
-function renderCard() {
-    const [word, translate] = currentSet[currentIndex];
-
-    document.getElementById("card-container").innerHTML = `
-        <div class="card" id="card">
-
-            <div class="card-side front">
-                <button class="flip-btn" onclick="flipCard()">↻</button>
-                <button class="sound-btn" onclick="speak('${word}')">🔊</button>
-
-                <h2>${word}</h2>
-                <small>Word ${currentIndex + 1} of ${currentSet.length}</small>
-
-                <div class="buttons">
-                    <button class="dont-know" onclick="dontKnow()">Don't know</button>
-                    <button class="know" onclick="nextCard()">Know</button>
-                </div>
-            </div>
-
-            <div class="card-side back">
-                <button class="flip-btn" onclick="flipCard()">↻</button>
-                
-
-                <h2>${translate}</h2>
-                <small>Translation</small>
-
-                <div class="buttons">
-                    <button class="dont-know" onclick="dontKnow()">Don't know</button>
-                    <button class="know" onclick="nextCard()">Know</button>
-                </div>
-            </div>
-
-        </div>
-    `;
-}
-
-
-// --- ACTIONS ---
-function flipCard() {
-    document.getElementById("card").classList.toggle("flip");
-}
-
-function nextCard() {
-    currentIndex++;
-    if (currentIndex >= currentSet.length) currentIndex = 0;
-    renderCard();
-}
-
-function dontKnow() {
-    currentSet.push(currentSet[currentIndex]); // повтор позже
-    nextCard();
-}
-
-
-// --- SPEECH ---
+/* ================= speech ================= */
 function speak(text) {
-    speechSynthesis.cancel();
-
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "en-US";
-    utter.rate = 0.9;
-
-    speechSynthesis.speak(utter);
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  u.rate = 0.9;
+  speechSynthesis.speak(u);
 }
 
+const presentSimpleOverlay = document.getElementById("presentSimpleOverlay");
+const openPresentSimpleBtn = document.getElementById("openPresentSimple");
+const backFromPresentSimple = document.getElementById("backFromPresentSimple");
 
-// Первичная загрузка
-renderCard();
+openPresentSimpleBtn.onclick = () => {
+  close(topicsOverlay);
+  open(presentSimpleOverlay);
+};
+
+backFromPresentSimple.onclick = () => {
+  close(presentSimpleOverlay);
+  open(topicsOverlay);
+};
+
+const presentContiniousOverlay = document.getElementById("presentContiniousOverlay");
+const openPresentContiniousBtn = document.getElementById("openPresentContinious");
+const backFromPresentContinious = document.getElementById("backFromPresentContinious");
+
+openPresentContiniousBtn.onclick = () => {
+  close(topicsOverlay);
+  open(presentContiniousOverlay);
+};
+
+backFromPresentContinious.onclick = () => {
+  close(presentContiniousOverlay);
+  open(topicsOverlay);
+};
+
+// Present Perfect
+const presentPerfectOverlay = document.getElementById("presentPerfectOverlay");
+const openPresentPerfectBtn = document.getElementById("openPresentPerfect");
+const backFromPresentPerfect = document.getElementById("backFromPresentPerfect");
+
+openPresentPerfectBtn.onclick = () => {
+  close(topicsOverlay);
+  open(presentPerfectOverlay);
+};
+
+backFromPresentPerfect.onclick = () => {
+  close(presentPerfectOverlay);
+  open(topicsOverlay);
+};
+
+// Present Perfect Continuous
+const presentPerfectContiniousOverlay = document.getElementById("presentPerfectContiniousOverlay");
+const openPresentPerfectContiniousBtn = document.getElementById("openPresentPerfectContinious");
+const backFromPresentPerfectContinious = document.getElementById("backFromPresentPerfectContinious");
+
+openPresentPerfectContiniousBtn.onclick = () => {
+  close(topicsOverlay);
+  open(presentPerfectContiniousOverlay);
+};
+
+backFromPresentPerfectContinious.onclick = () => {
+  close(presentPerfectContiniousOverlay);
+  open(topicsOverlay);
+};
+
+// Past Simple
+const pastSimpleOverlay = document.getElementById("pastSimpleOverlay");
+const openPastSimpleBtn = document.getElementById("openPastSimple");
+const backFromPastSimple = document.getElementById("backFromPastSimple");
+
+openPastSimpleBtn.onclick = () => { close(topicsOverlay); open(pastSimpleOverlay); };
+backFromPastSimple.onclick = () => { close(pastSimpleOverlay); open(topicsOverlay); };
+
+// Past Continuous
+const pastContinuousOverlay = document.getElementById("pastContinuousOverlay");
+const openPastContinuousBtn = document.getElementById("openPastContinuous");
+const backFromPastContinuous = document.getElementById("backFromPastContinuous");
+
+openPastContinuousBtn.onclick = () => { close(topicsOverlay); open(pastContinuousOverlay); };
+backFromPastContinuous.onclick = () => { close(pastContinuousOverlay); open(topicsOverlay); };
+
+// Past Perfect
+const pastPerfectOverlay = document.getElementById("pastPerfectOverlay");
+const openPastPerfectBtn = document.getElementById("openPastPerfect");
+const backFromPastPerfect = document.getElementById("backFromPastPerfect");
+
+openPastPerfectBtn.onclick = () => { close(topicsOverlay); open(pastPerfectOverlay); };
+backFromPastPerfect.onclick = () => { close(pastPerfectOverlay); open(topicsOverlay); };
+
+// Past Perfect Continuous
+const pastPerfectContinuousOverlay = document.getElementById("pastPerfectContinuousOverlay");
+const openPastPerfectContinuousBtn = document.getElementById("openPastPerfectContinuous");
+const backFromPastPerfectContinuous = document.getElementById("backFromPastPerfectContinuous");
+
+openPastPerfectContinuousBtn.onclick = () => { close(topicsOverlay); open(pastPerfectContinuousOverlay); };
+backFromPastPerfectContinuous.onclick = () => { close(pastPerfectContinuousOverlay); open(topicsOverlay); };
+
+// Future Simple
+const futureSimpleOverlay = document.getElementById("futureSimpleOverlay");
+const openFutureSimpleBtn = document.getElementById("openFutureSimple");
+const backFromFutureSimple = document.getElementById("backFromFutureSimple");
+
+openFutureSimpleBtn.onclick = () => { close(topicsOverlay); open(futureSimpleOverlay); };
+backFromFutureSimple.onclick = () => { close(futureSimpleOverlay); open(topicsOverlay); };
+
+// Future Continuous
+const futureContinuousOverlay = document.getElementById("futureContinuousOverlay");
+const openFutureContinuousBtn = document.getElementById("openFutureContinuous");
+const backFromFutureContinuous = document.getElementById("backFromFutureContinuous");
+
+openFutureContinuousBtn.onclick = () => { close(topicsOverlay); open(futureContinuousOverlay); };
+backFromFutureContinuous.onclick = () => { close(futureContinuousOverlay); open(topicsOverlay); };
+
+// Future Perfect
+const futurePerfectOverlay = document.getElementById("futurePerfectOverlay");
+const openFuturePerfectBtn = document.getElementById("openFuturePerfect");
+const backFromFuturePerfect = document.getElementById("backFromFuturePerfect");
+
+openFuturePerfectBtn.onclick = () => { close(topicsOverlay); open(futurePerfectOverlay); };
+backFromFuturePerfect.onclick = () => { close(futurePerfectOverlay); open(topicsOverlay); };
+
+// Future Perfect Continuous
+const futurePerfectContinuousOverlay = document.getElementById("futurePerfectContinuousOverlay");
+const openFuturePerfectContinuousBtn = document.getElementById("openFuturePerfectContinuous");
+const backFromFuturePerfectContinuous = document.getElementById("backFromFuturePerfectContinuous");
+
+openFuturePerfectContinuousBtn.onclick = () => { close(topicsOverlay); open(futurePerfectContinuousOverlay); };
+backFromFuturePerfectContinuous.onclick = () => { close(futurePerfectContinuousOverlay); open(topicsOverlay); };
