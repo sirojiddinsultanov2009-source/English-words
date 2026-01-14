@@ -357,7 +357,7 @@ const sets = {
         ["backround", "kelib chiqish"],
         ["litter", "chiqindi"],
         ["permanent", "doimiy"],
-        ["satelitte", "dun'iy yo'ldosh"],
+        ["satelitte", "sun'iy yo'ldosh"],
         ["beneath", "ostida, tagida"],
         ["barrier", "to'siq"],
         ["amazing", "hayratlanarli"],
@@ -667,3 +667,4 @@ const backFromFuturePerfectContinuous = document.getElementById("backFromFutureP
 
 openFuturePerfectContinuousBtn.onclick = () => { close(topicsOverlay); open(futurePerfectContinuousOverlay); };
 backFromFuturePerfectContinuous.onclick = () => { close(futurePerfectContinuousOverlay); open(topicsOverlay); };
+
